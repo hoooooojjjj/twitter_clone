@@ -27,18 +27,14 @@ const Auth = () => {
     e.preventDefault();
     if (newAccount) {
       createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          console.log(userCredential);
-        })
+        .then((userCredential) => {})
         .catch((error) => {
           seterr(error.message);
           // ..
         });
     } else {
       signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          console.log(userCredential);
-        })
+        .then((userCredential) => {})
         .catch((error) => {
           console.log(error.message);
         });

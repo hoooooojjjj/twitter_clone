@@ -1,6 +1,7 @@
 // 파이어베이스를 사용할 때마다 key와 함수들을 가져와야하니까 가져다 쓸 수 있게 따로 파일을 만들어둔다.
 
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -17,3 +18,4 @@ const app = initializeApp(firebaseConfig);
 
 // 각 기능을 사용할 떄마다 export해준다.
 export const auth = getAuth(app); // 인증
+export const db = getFirestore(app); // firestore
