@@ -3,6 +3,8 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage";
+
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -19,3 +21,4 @@ const app = initializeApp(firebaseConfig);
 // 각 기능을 사용할 떄마다 export해준다.
 export const auth = getAuth(app); // 인증
 export const db = getFirestore(app); // firestore
+export const storage = getStorage(app);

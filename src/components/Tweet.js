@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { doc, deleteDoc, setDoc } from "firebase/firestore";
 import { db } from "../Myfirebase";
-const Tweet = ({ id, tweet, isOwner, createAt, creatorId }) => {
+import { storage } from "../Myfirebase";
+import { ref, deleteObject } from "firebase/storage";
+const Tweet = ({ id, tweet, isOwner, createAt, creatorId, file }) => {
   const [editing, setediting] = useState(tweet);
   const [isEdit, setisEdit] = useState(false);
 
@@ -10,6 +12,10 @@ const Tweet = ({ id, tweet, isOwner, createAt, creatorId }) => {
     const ok = window.confirm("정말 트윗을 삭제하시겠습니까?");
     if (ok) {
       await deleteDoc(doc(db, "tweets", id));
+      // 참조에 이미지 url을 넣어주면 그 이미지 파일 참조를 가져옴
+      const storageRef = ref(storage, file);
+      // 파일 삭제
+      deleteObject(storageRef);
     }
   };
 
@@ -49,6 +55,7 @@ const Tweet = ({ id, tweet, isOwner, createAt, creatorId }) => {
       ) : (
         <div>
           <h4>{tweet}</h4>
+          {file && <img src={file} width={"50px"} height={"50px"}></img>}
           {isOwner ? (
             <>
               <button onClick={onDeleteClick}>트윗 삭제</button>

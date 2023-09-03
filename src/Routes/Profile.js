@@ -1,19 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../Myfirebase";
 import { useNavigate } from "react-router-dom";
 
-const Profile = () => {
+const Profile = ({ userObj }) => {
   const nav = useNavigate();
-  const onLogoutClick = () => {
-    signOut(auth)
-      .then(() => {
-        nav("/", { replace: true });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const onLogoutClick = async () => {
+    await signOut(auth);
+    nav("/", { replace: true });
   };
+
   return (
     <div>
       <button onClick={onLogoutClick}>로그아웃</button>
