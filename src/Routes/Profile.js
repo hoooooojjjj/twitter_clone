@@ -32,10 +32,10 @@ const Profile = ({ userObj, refreshUser }) => {
       where("creatorId", "==", userObj.uid),
       orderBy("createAt", "desc")
     );
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
-    });
+    // const querySnapshot = await getDocs(q);
+    // querySnapshot.forEach((doc) => {
+    //   console.log(doc.id, " => ", doc.data());
+    // });
   };
 
   useEffect(() => {
