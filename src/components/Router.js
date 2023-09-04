@@ -5,17 +5,17 @@ import Auth from "../Routes/Auth";
 import Navigation from "./Navigation";
 import Profile from "../Routes/Profile";
 
-const Router = ({ islogedin, userObj }) => {
+const Router = ({ islogedin, userObj, refreshUser }) => {
   return (
     <BrowserRouter>
-      {islogedin ? <Navigation /> : <></>}
+      {islogedin ? <Navigation userObj={userObj} /> : <></>}
       <Routes>
         {islogedin ? (
           <>
             <Route path="/" element={<Home userObj={userObj} />}></Route>
             <Route
               path="/profile"
-              element={<Profile userObj={userObj} />}
+              element={<Profile userObj={userObj} refreshUser={refreshUser} />}
             ></Route>
           </>
         ) : (

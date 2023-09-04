@@ -15,6 +15,8 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
+
+
 // 파이어베이스 초기화를 해두고
 const app = initializeApp(firebaseConfig);
 
