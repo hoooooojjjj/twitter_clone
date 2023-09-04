@@ -16,9 +16,9 @@ const Home = ({ userObj }) => {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <TweetFactory userObj={userObj} />
-      <div>
+      <div style={{ marginTop: 30 }}>
         {tweetList.map((it) => (
           <Tweet key={it.id} {...it} isOwner={userObj.uid === it.creatorId} />
         ))}

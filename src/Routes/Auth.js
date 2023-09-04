@@ -6,6 +6,12 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import AuthForm from "../components/AuthForm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTwitter,
+  faGoogle,
+  faGithub,
+} from "@fortawesome/free-brands-svg-icons";
 
 const Auth = () => {
   const providergoogle = new GoogleAuthProvider();
@@ -26,14 +32,20 @@ const Auth = () => {
     }
   };
   return (
-    <div>
+    <div className="authContainer">
+      <FontAwesomeIcon
+        icon={faTwitter}
+        color={"#04AAFF"}
+        size="3x"
+        style={{ marginBottom: 30 }}
+      />
       <AuthForm />
-      <div>
-        <button name="google" onClick={onSocailClick}>
-          구글로 로그인
+      <div className="authBtns">
+        <button onClick={onSocailClick} name="google" className="authBtn">
+          구글로 로그인 <FontAwesomeIcon icon={faGoogle} />
         </button>
-        <button name="github" onClick={onSocailClick}>
-          깃허브로 로그인
+        <button onClick={onSocailClick} name="github" className="authBtn">
+          깃허브로 로그인 <FontAwesomeIcon icon={faGithub} />
         </button>
       </div>
     </div>

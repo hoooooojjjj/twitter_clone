@@ -11,13 +11,22 @@ const Router = ({ islogedin, userObj, refreshUser }) => {
       {islogedin ? <Navigation userObj={userObj} /> : <></>}
       <Routes>
         {islogedin ? (
-          <>
+          <React.Fragment
+            style={{
+              maxWidth: 890,
+              width: "100%",
+              margin: "0 auto",
+              marginTop: 80,
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <Route path="/" element={<Home userObj={userObj} />}></Route>
             <Route
               path="/profile"
               element={<Profile userObj={userObj} refreshUser={refreshUser} />}
             ></Route>
-          </>
+          </React.Fragment>
         ) : (
           <Route path="/" element={<Auth />}></Route>
         )}

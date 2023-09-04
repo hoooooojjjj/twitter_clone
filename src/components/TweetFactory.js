@@ -4,6 +4,8 @@ import { db } from "../Myfirebase";
 import { v4 as uuidv4 } from "uuid";
 import { ref, uploadString, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const TweetFactory = ({ userObj }) => {
   const [tweet, settweet] = useState("");
@@ -77,22 +79,45 @@ const TweetFactory = ({ userObj }) => {
   };
   return (
     <div>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="factoryForm">
+        <div className="factoryInput__container">
+          <input
+            className="factoryInput__input"
+            type="text"
+            value={tweet}
+            onChange={(e) => {
+              settweet(e.target.value);
+            }}
+            placeholder="기분이 어떤가요?"
+            maxLength={120}
+          />
+          <input type="submit" value="&rarr;" className="factoryInput__arrow" />
+        </div>
+        <label htmlFor="attach-file" className="factoryInput__label">
+          <span>사진 추가</span>
+          <FontAwesomeIcon icon={faPlus} />
+        </label>
         <input
-          type="text"
-          value={tweet}
-          onChange={(e) => {
-            settweet(e.target.value);
+          id="attach-file"
+          type="file"
+          accept="image/*"
+          onChange={onFileChange}
+          style={{
+            opacity: 0,
           }}
-          placeholder="기분이 어떤가요?"
-          maxLength={120}
         />
-        <input type="file" accept="image/*" onChange={onFileChange} />
-        <input type="submit" value="트윗" />
         {attachment && (
-          <div>
-            <img src={attachment} width={"50px"} height={"50px"} alt=""></img>
-            <button onClick={onClearAttachment}>사진 제거</button>
+          <div className="factoryForm__attachment">
+            <img
+              src={attachment}
+              style={{
+                backgroundImage: attachment,
+              }}
+            />
+            <div className="factoryForm__clear" onClick={onClearAttachment}>
+              <span>Remove</span>
+              <FontAwesomeIcon icon={faTimes} />
+            </div>
           </div>
         )}
       </form>
