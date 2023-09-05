@@ -5,8 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { db } from "../Myfirebase";
 import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
 import { updateProfile } from "@firebase/auth";
+import Tweet from "../components/Tweet";
 
 const Profile = ({ userObj, refreshUser }) => {
+  const [myTweet, setmyTweet] = useState([]);
   useEffect(() => {
     const title = document.getElementsByTagName("title")[0];
     title.innerHTML = "내 프로필";
@@ -38,15 +40,23 @@ const Profile = ({ userObj, refreshUser }) => {
     );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
+      setmyTweet((prev) => [
+        ...prev,
+        {
+          id: doc.id,
+          ...doc.data(),
+        },
+      ]);
       console.log(doc.id, " => ", doc.data());
     });
+    console.log(myTweet);
   };
 
   useEffect(() => {
     getMyTweets();
   }, []);
   return (
-    <div className="container">
+    <div className="container ">
       <form onSubmit={onSubmit} className="profileForm">
         <input
           type="text"
@@ -65,6 +75,13 @@ const Profile = ({ userObj, refreshUser }) => {
           }}
         />
       </form>
+      <div style={{ marginTop: 20 }}>
+        {myTweet.map((Tweet) => (
+          <div className="nweet" key={Tweet.id}>
+            {Tweet.tweet}
+          </div>
+        ))}
+      </div>
       <button className="formBtn cancelBtn logOut" onClick={onLogoutClick}>
         로그아웃
       </button>

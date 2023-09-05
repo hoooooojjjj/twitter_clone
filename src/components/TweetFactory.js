@@ -38,6 +38,7 @@ const TweetFactory = ({ userObj }) => {
         createAt: Date.now(),
         creatorId: userObj.uid, // 유저의 토큰을 저장해서 어떤 유저인지 알 수 있도록 함
         file: downloadUrl,
+        userName: userObj.displayName,
       });
     } catch (e) {
       console.error("Error adding document: ", e);

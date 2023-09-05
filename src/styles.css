@@ -275,3 +275,8 @@ form {
   font-size: 12px;
   text-decoration: underline;
 }
+
+.username{
+  font-weight: bold;
+  margin-bottom: 10px;
+}

@@ -5,7 +5,7 @@ import { storage } from "../Myfirebase";
 import { ref, deleteObject } from "firebase/storage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
-const Tweet = ({ id, tweet, isOwner, createAt, creatorId, file }) => {
+const Tweet = ({ id, tweet, isOwner, createAt, creatorId, file, userName }) => {
   const [editing, setediting] = useState(tweet);
   const [isEdit, setisEdit] = useState(false);
 
@@ -65,7 +65,10 @@ const Tweet = ({ id, tweet, isOwner, createAt, creatorId, file }) => {
         </>
       ) : (
         <div>
-          <h4>{tweet}</h4>
+          <h4>
+            <div className="username">{userName}</div>
+            <span>{tweet}</span>
+          </h4>
           {file && <img src={file}></img>}
           {isOwner && (
             <div className="nweet__actions">
