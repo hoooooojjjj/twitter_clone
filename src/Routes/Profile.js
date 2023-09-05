@@ -7,6 +7,10 @@ import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
 import { updateProfile } from "@firebase/auth";
 
 const Profile = ({ userObj, refreshUser }) => {
+  useEffect(() => {
+    const title = document.getElementsByTagName("title")[0];
+    title.innerHTML = "내 프로필";
+  });
   const nav = useNavigate();
   const [newDisplayName, setnewDisplayName] = useState(userObj.displayName);
 
@@ -32,10 +36,10 @@ const Profile = ({ userObj, refreshUser }) => {
       where("creatorId", "==", userObj.uid),
       orderBy("createAt", "desc")
     );
-    // const querySnapshot = await getDocs(q);
-    // querySnapshot.forEach((doc) => {
-    //   console.log(doc.id, " => ", doc.data());
-    // });
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data());
+    });
   };
 
   useEffect(() => {

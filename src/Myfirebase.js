@@ -12,10 +12,7 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_STORAGEBUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGESENDER_ID,
   appId: process.env.REACT_APP_APP_ID,
-  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
-
-
 
 // 파이어베이스 초기화를 해두고
 const app = initializeApp(firebaseConfig);

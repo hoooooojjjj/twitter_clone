@@ -1,5 +1,5 @@
 import { auth } from "../Myfirebase";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   GoogleAuthProvider,
   GithubAuthProvider,
@@ -14,6 +14,11 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 const Auth = () => {
+  useEffect(() => {
+    const title = document.getElementsByTagName("title")[0];
+    title.innerHTML = "로그인";
+  });
+
   const providergoogle = new GoogleAuthProvider();
   const providergithub = new GithubAuthProvider();
 
